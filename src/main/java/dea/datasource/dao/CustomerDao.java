@@ -4,7 +4,6 @@ import dea.datasource.dao.interfaces.ICustomerDao;
 import dea.datasource.dao.mappers.IDataMapper;
 import dea.services.domain_objects.Customer;
 import dea.datasource.dao.mappers.CustomerMapper;
-
 import java.util.List;
 
 public class CustomerDao extends Dao implements ICustomerDao {

@@ -23,11 +23,14 @@ public class DatabaseConnectionSingleton {
                     this.connection = DriverManager.getConnection(databaseConfig.getSQLiteConnectionString());
                     break;
                 case MONGODB:
+                    Class.forName(databaseConfig.getMongoDbDriver());
+                    this.connection = DriverManager.getConnection(databaseConfig.getMongoDbConnectionString());
                     break;
                 default:
                     break;
             }
         } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getClass().toString());
             e.printStackTrace();
         }
     }

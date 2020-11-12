@@ -49,6 +49,7 @@ abstract class DataMapper implements IDataMapper{
             rs = stmt.executeQuery();
             return loadAll(rs);
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             throw new InternalServerErrorException();
         }
     }

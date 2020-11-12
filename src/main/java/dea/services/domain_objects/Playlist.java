@@ -6,6 +6,8 @@ public class Playlist extends DomainObject {
     private long owner;
     private long[] tracks;
 
+    public Playlist() {}
+
     public Playlist(final long id, final String name, final long owner) {
         super(id);
         this.name = name;

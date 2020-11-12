@@ -12,6 +12,9 @@ public class DomainObject {
         }
         this.id = id;
     }
+
+    public DomainObject() {}
+
     public DomainObject(long id) {
         if(id == 0) {
             throw new IllegalStateException("Id cannot be 0!");

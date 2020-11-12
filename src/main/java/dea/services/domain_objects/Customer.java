@@ -7,6 +7,8 @@ public class Customer extends DomainObject {
     private String firstname;
     private String lastname;
 
+    public Customer() {}
+
     public Customer(final long id, final String username, final String password, final String firstname, final String lastname) {
         super(id);
         this.username = username;

@@ -4,6 +4,8 @@ public class Song extends Track {
 
     private String album;
 
+    public Song(){}
+
     public Song(long id, String performer, String title, String url, int length, boolean availableOffline, String album) {
         super(id, performer, title, url, length, availableOffline);
         this.album = album;

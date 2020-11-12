@@ -8,6 +8,8 @@ public abstract class Track extends DomainObject {
     private int length;
     private boolean availableOffline;
 
+    public Track(){}
+
     public Track(final long id, final String performer, final String title, final String url, final int length, final boolean availableOffline) {
         super(id);
         this.performer = performer;

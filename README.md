@@ -8,7 +8,7 @@
 4. Have a TomEE local server configured to deploy the ``spotitube-backend:war``. 
 5. Run the back-end and go to ``ci.icaprojecten.nl/spotitube``
 6. Login in with the server URL http://localhost:8080/spotitube and the customer username and password you created in step 2. 
-7. You should now me able to use the client to create, edit and delete playlists and tracks.
+7. You should now be able to use the client to create, edit and delete playlists and tracks.
 
 ### Changing the database
 To change the database the application uses, all you have to do is change the database type from MYSQL to SQLITE in ``src/main/resources/database.properties``, no recompiling necessary!
