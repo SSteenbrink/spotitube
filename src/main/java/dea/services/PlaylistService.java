@@ -18,13 +18,6 @@ public class PlaylistService implements IPlaylistService {
         this.playlistDao = playlistDao;
     }
 
-    private ITrackService trackService;
-
-    @Inject
-    public void setTrackService(ITrackService trackService) {
-        this.trackService= trackService;
-    }
-
     public List<Playlist> getAll() {
         return playlistDao.findAll();
     }

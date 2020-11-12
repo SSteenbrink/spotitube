@@ -16,7 +16,7 @@ import javax.ws.rs.ext.Provider;
 import java.security.Principal;
 
 /*
-inspiration: stackoverflow user: cassiomolin
+inspiration: stackoverflow user cassiomolin
 url: https://stackoverflow.com/a/26778123/10391156
  */
 

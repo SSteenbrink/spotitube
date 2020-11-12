@@ -1,6 +1,5 @@
 package dea.datasource.util;
 
-import javax.xml.crypto.Data;
 import java.io.InputStream;
 import java.util.*;
 
@@ -13,7 +12,7 @@ public class DatabaseConfigSingleton {
     private String SQLiteDriver;
     private String SQLiteConnectionString;
 
-    private Map databaseProperties;
+    private Map<String, String> databaseProperties;
 
     private DatabaseConfigSingleton() {
         databaseProperties = readPropertiesFile("database.properties");
@@ -22,11 +21,23 @@ public class DatabaseConfigSingleton {
         MySqlConnectionString = getProperty("MySqlConnectionString");
         SQLiteDriver = getProperty("SQLiteDriver");
         SQLiteConnectionString = getProperty("SQLiteConnectionString");
+        switch(getProperty("databaseType")) {
+            case "SQLITE":
+                databaseType = DatabaseType.SQLITE;
+                break;
+            case "MONGODB":
+                databaseType = DatabaseType.MONGODB;
+                break;
+            case "MYSQL":
+            default:
+                databaseType = DatabaseType.MYSQL;
+                break;
+        }
         databaseType= getProperty("databaseType").equals("MYSQL") ? DatabaseType.MYSQL : DatabaseType.SQLITE;
     }
 
     private String getProperty(String propertyName) {
-        return databaseProperties.get(propertyName).toString();
+        return databaseProperties.get(propertyName);
     }
 
     public static DatabaseConfigSingleton getInstance() {

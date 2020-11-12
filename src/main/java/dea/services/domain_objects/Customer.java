@@ -51,4 +51,6 @@ public class Customer extends DomainObject {
     public String toString() {
         return "Customer [id=" + getId() + ", username=" + getUsername() + ", firstname=" + getFirstname() + ", lastname=" + getLastname() + "]";
     }
+
+
 }

@@ -4,6 +4,7 @@ import dea.StubUtility;
 import dea.datasource.dao.interfaces.ITrackDao;
 import dea.services.domain_objects.Song;
 import dea.services.domain_objects.Track;
+import dea.services.interfaces.ITrackService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,7 +57,7 @@ public class TrackServiceTest {
     }
 
     @Test
-    public void find() {
+    public void testFind() {
         Track expected = new Song(1L, "Performer", "Title", "http://example.com", 100, true, "Album");
 
         Mockito.when(mockTrackDao.find(Mockito.anyLong())).thenReturn(expected);

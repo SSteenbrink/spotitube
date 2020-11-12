@@ -4,6 +4,7 @@ import dea.services.domain_objects.DomainObject;
 import dea.datasource.dao.StatementSource;
 
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.InternalServerErrorException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ abstract class DataMapper implements IDataMapper{
     // Find
     protected abstract String findStatement();
 
-    public DomainObject find(long id, Connection conn) {
+    public DomainObject find(long id, Connection conn) throws InternalServerErrorException {
         DomainObject result = loadedMap.get(id);
         if (result != null) return result;
 
@@ -35,12 +36,11 @@ abstract class DataMapper implements IDataMapper{
 
             return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new InternalServerErrorException();
         }
-        return result;
     }
 
-    public List<? extends DomainObject> findMany(StatementSource source, Connection conn) {
+    public List<? extends DomainObject> findMany(StatementSource source, Connection conn) throws InternalServerErrorException {
         ResultSet rs;
         try(PreparedStatement stmt = conn.prepareStatement(source.sql())) {
             for (int i = 0; i < source.parameters().length; i++) {
@@ -49,9 +49,8 @@ abstract class DataMapper implements IDataMapper{
             rs = stmt.executeQuery();
             return loadAll(rs);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new InternalServerErrorException();
         }
-        return new ArrayList<>();
     }
 
     // Insert
@@ -59,13 +58,13 @@ abstract class DataMapper implements IDataMapper{
 
     protected abstract void doInsert(DomainObject subject, PreparedStatement insertStatement) throws SQLException;
 
-    public void insert(DomainObject domainObject, Connection conn) {
+    public void insert(DomainObject domainObject, Connection conn) throws InternalServerErrorException {
         try(PreparedStatement insertStatement = conn.prepareStatement(insertStatement())) {
             doInsert(domainObject, insertStatement);
             insertStatement.execute();
             loadedMap.put(domainObject.getId(), domainObject);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new InternalServerErrorException();
         }
     }
 
@@ -80,7 +79,7 @@ abstract class DataMapper implements IDataMapper{
             updateStatement.execute();
             loadedMap.put(domainObject.getId(), domainObject);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new InternalServerErrorException();
         }
     }
 
@@ -89,13 +88,13 @@ abstract class DataMapper implements IDataMapper{
 
     protected abstract void doDelete(DomainObject subject, PreparedStatement deleteStatement) throws SQLException;
 
-    public void delete(DomainObject domainObject, Connection conn) {
+    public void delete(DomainObject domainObject, Connection conn) throws InternalServerErrorException {
         try(PreparedStatement deleteStatement = conn.prepareStatement(deleteStatement())) {
             doDelete(domainObject, deleteStatement);
             deleteStatement.execute();
             loadedMap.remove(domainObject.getId());
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new InternalServerErrorException();
         }
     }
 

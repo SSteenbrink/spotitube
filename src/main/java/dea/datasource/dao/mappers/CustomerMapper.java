@@ -21,7 +21,7 @@ public class CustomerMapper extends DataMapper {
     }
 
     @Override
-    protected void doInsert(DomainObject subject, PreparedStatement insertStatement) throws SQLException {
+    protected void doInsert(DomainObject subject, PreparedStatement insertStatement) {
         throw new NotSupportedException();
     }
 
@@ -48,7 +48,7 @@ public class CustomerMapper extends DataMapper {
     }
 
     @Override
-    protected void doDelete(DomainObject subject, PreparedStatement deleteStatement) throws SQLException {
+    protected void doDelete(DomainObject subject, PreparedStatement deleteStatement) {
         throw new NotSupportedException();
     }
 

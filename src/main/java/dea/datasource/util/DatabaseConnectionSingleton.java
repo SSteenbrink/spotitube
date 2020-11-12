@@ -22,6 +22,8 @@ public class DatabaseConnectionSingleton {
                     Class.forName(databaseConfig.getSQLiteDriver());
                     this.connection = DriverManager.getConnection(databaseConfig.getSQLiteConnectionString());
                     break;
+                case MONGODB:
+                    break;
                 default:
                     break;
             }
