@@ -5,7 +5,7 @@
     <alternatives>
         <class>dea.datasource.dao.MongoCustomerDao</class>
         <class>dea.datasource.dao.MongoPlaylistDao</class>
-        <class>dea.datasource.dao.MongoTracksDao</class>
+        <class>dea.datasource.dao.MongoTrackDao</class>
     </alternatives>
 </beans>
 
