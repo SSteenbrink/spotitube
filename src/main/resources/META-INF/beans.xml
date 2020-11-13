@@ -4,6 +4,8 @@
   http://java.sun.com/xml/ns/javaee/beans_2_0.xsd">
     <alternatives>
         <class>dea.datasource.dao.MongoCustomerDao</class>
+        <class>dea.datasource.dao.MongoPlaylistDao</class>
+        <class>dea.datasource.dao.MongoTracksDao</class>
     </alternatives>
 </beans>
 

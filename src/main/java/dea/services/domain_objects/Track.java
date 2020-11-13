@@ -1,6 +1,5 @@
 package dea.services.domain_objects;
 
-
 public abstract class Track extends DomainObject {
     private String performer;
     private String title;

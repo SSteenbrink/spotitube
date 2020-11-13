@@ -20,7 +20,7 @@ public class MongoCustomerDao extends MongoDao implements ICustomerDao {
     public MongoCustomerDao() {
         super();
         try {
-            customers = getDatabase().getCollection("customer", Customer.class);
+            customers = getDatabase().getCollection("customers", Customer.class);
         } catch(Exception e) {
             throw new InternalServerErrorException();
         }
