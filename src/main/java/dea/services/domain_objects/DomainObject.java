@@ -1,6 +1,10 @@
 package dea.services.domain_objects;
 
+import org.bson.codecs.pojo.annotations.BsonId;
+
 public class DomainObject {
+
+    @BsonId
     private long id;
     public long getId() {
         return id;

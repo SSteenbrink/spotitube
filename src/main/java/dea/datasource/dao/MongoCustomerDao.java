@@ -20,19 +20,23 @@ public class MongoCustomerDao extends MongoDao implements ICustomerDao {
     public MongoCustomerDao() {
         super();
         try {
-            customers = getDatabase().getCollection("customers", Customer.class);
+            customers = getDatabase().getCollection(getCollectionName(), Customer.class);
         } catch(Exception e) {
-            throw new InternalServerErrorException();
+            throw new InternalServerErrorException(e.getCause());
         }
     }
 
     @Override
+    protected String getCollectionName() {
+        return "customers";
+    }
+
+    @Override
     public Customer findByUsername(String username) {
-        System.out.println(customers.toString());
         try {
-            return customers.find(eq("username", username)).projection(excludeId()).first();
+            return customers.find(eq("username", username)).first();
         } catch (Exception e) {
-            throw new InternalServerErrorException(e);
+            throw new InternalServerErrorException(e.getCause());
         }
     }
 

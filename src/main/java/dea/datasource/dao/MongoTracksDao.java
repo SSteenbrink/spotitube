@@ -17,10 +17,15 @@ public class MongoTracksDao extends MongoDao implements ITrackDao {
     public MongoTracksDao() {
         super();
         try {
-            tracks = getDatabase().getCollection("tracks", Track.class);
+            tracks = getDatabase().getCollection(getCollectionName(), Track.class);
         } catch(Exception e) {
-            throw new InternalServerErrorException();
+            throw new InternalServerErrorException(e.getCause());
         }
+    }
+
+    @Override
+    protected String getCollectionName() {
+        return "tracks";
     }
 
     @Override

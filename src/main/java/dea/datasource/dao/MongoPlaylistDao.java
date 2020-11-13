@@ -1,6 +1,7 @@
 package dea.datasource.dao;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.InsertOneOptions;
 import dea.datasource.dao.interfaces.IPlaylistDao;
 import dea.services.domain_objects.Playlist;
 import dea.services.domain_objects.Track;
@@ -22,20 +23,24 @@ public class MongoPlaylistDao extends MongoDao implements IPlaylistDao {
     public MongoPlaylistDao() {
         super();
         try {
-            playlists = getDatabase().getCollection("playlists", Playlist.class);
+            playlists = getDatabase().getCollection(getCollectionName(), Playlist.class);
         } catch(Exception e) {
             throw new InternalServerErrorException();
         }
     }
 
     @Override
+    protected String getCollectionName() {
+        return "playlists";
+    }
+
+    @Override
     public List<Playlist> findAll() {
         try {
             List<Playlist> results = new ArrayList<>();
-            playlists.find().projection(fields(exclude("tracks"), excludeId())).into(results);
+            playlists.find().projection(fields(exclude("tracks"))).into(results);
             return results;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             throw new InternalServerErrorException(e.getCause());
         }
     }
@@ -43,22 +48,20 @@ public class MongoPlaylistDao extends MongoDao implements IPlaylistDao {
     @Override
     public Playlist find(long id) {
         try {
-            return playlists.find(eq("id", id)).projection(fields(exclude("tracks"), excludeId())).first();
+            return playlists.find(eq("id", id)).projection(fields(exclude("tracks"))).first();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            throw new InternalServerErrorException();
+            throw new InternalServerErrorException(e.getCause());
         }
     }
 
     @Override
     public void insert(Playlist playlist) {
         try {
+            System.out.println(playlist.toString());
+            playlist.setId(getNextIdValue());
             playlists.insertOne(playlist);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            throw new InternalServerErrorException();
+            throw new InternalServerErrorException(e.getCause());
         }
     }
 
@@ -67,9 +70,7 @@ public class MongoPlaylistDao extends MongoDao implements IPlaylistDao {
         try {
             playlists.replaceOne(eq("id", playlist.getId()), playlist);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            throw new InternalServerErrorException();
+            throw new InternalServerErrorException(e.getCause());
         }
     }
 
@@ -80,7 +81,7 @@ public class MongoPlaylistDao extends MongoDao implements IPlaylistDao {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
-            throw new InternalServerErrorException();
+            throw new InternalServerErrorException(e.getCause());
         }
     }
 
