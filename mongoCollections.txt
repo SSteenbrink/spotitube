@@ -1,4 +1,4 @@
-// Counters
+// counters
 {
   "_id" : "playlists",
   "sequence_value" : NumberLong(4)
@@ -12,7 +12,7 @@
   "sequence_number" : NumberLong(3)
 }
 
-// Customers
+// customers
 {
     "_id" : NumberLong(1),
     "firstname" : "Sebastiaan",
@@ -21,7 +21,7 @@
     "username" : "sebas"
 }
 
-// Playlists
+// playlists
 {
     "_id" : NumberLong(2),
     "name" : "playlist 2",
@@ -38,7 +38,7 @@
     "tracks" : []
 }
 
-// Tracks
+// tracks
 {
     "_id" : NumberLong(1),
     "performer" : "In Flames",
