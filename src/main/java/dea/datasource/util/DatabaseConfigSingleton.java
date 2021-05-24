@@ -11,8 +11,6 @@ public class DatabaseConfigSingleton {
     private String MySqlConnectionString;
     private String SQLiteDriver;
     private String SQLiteConnectionString;
-    private String MongoDbDriver;
-    private String MongoDbConnectionString;
 
     private Map<String, String> databaseProperties;
 
@@ -23,8 +21,6 @@ public class DatabaseConfigSingleton {
         MySqlConnectionString = getProperty("MySqlConnectionString");
         SQLiteDriver = getProperty("SQLiteDriver");
         SQLiteConnectionString = getProperty("SQLiteConnectionString");
-        MongoDbDriver = getProperty("MongoDbDriver");
-        MongoDbConnectionString = getProperty("MongoDbConnectionString");
 
         switch(getProperty("databaseType")) {
             case "SQLITE":
@@ -90,13 +86,5 @@ public class DatabaseConfigSingleton {
 
     public String getSQLiteConnectionString() {
         return SQLiteConnectionString;
-    }
-
-    public String getMongoDbDriver() {
-        return MongoDbDriver;
-    }
-
-    public String getMongoDbConnectionString() {
-        return MongoDbConnectionString;
     }
 }

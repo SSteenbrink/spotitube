@@ -1,6 +1,6 @@
 package dea.datasource.dao;
 
-import com.mongodb.BasicDBObject;
+
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
@@ -9,7 +9,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.ReturnDocument;
-import com.mongodb.client.model.UpdateOptions;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -64,7 +63,9 @@ public abstract class MongoDao {
     protected long getNextIdValue() {
         MongoCollection<Document> collection = getDatabase().getCollection("counters");
         try {
-            Document counter = collection.findOneAndUpdate(eq("_id", getCollectionName()), new Document("$inc", new Document("sequence_value", 1L)), new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER));
+            Document counter = collection.findOneAndUpdate( eq("_id", getCollectionName()),
+                                                            new Document("$inc", new Document("sequence_value", 1L)),
+                                                            new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER));
             return (long) counter.get("sequence_value");
         } catch(Exception e) {
             throw new InternalServerErrorException(e.getCause());

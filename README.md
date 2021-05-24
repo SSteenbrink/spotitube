@@ -11,6 +11,6 @@
 7. You should now be able to use the client to create, edit and delete playlists and tracks.
 
 ### Changing the database
-To change the database the application uses, all you have to do is change the database type from MYSQL to SQLITE in ``src/main/resources/database.properties``, no recompiling necessary!
+To change the database the application uses, all you have to do is change the database type from MYSQL to SQLITE or MONGODB in ``src/main/resources/database.properties``, no recompiling necessary!
 NOTE: The SQLite database is populated with only one customer (username: sebas, password: password) and three tracks.
 

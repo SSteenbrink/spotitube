@@ -1,0 +1,84 @@
+// Counters
+{
+  "_id" : "playlists",
+  "sequence_value" : NumberLong(4)
+},
+{
+  "_id" : "customers",
+  "sequence_value" : NumberLong(1)
+},
+{
+  "_id" : "tracks",
+  "sequence_number" : NumberLong(3)
+}
+
+// Customers
+{
+    "_id" : NumberLong(1),
+    "firstname" : "Sebastiaan",
+    "lastname" : "Steenbrink",
+    "password" : "password",
+    "username" : "sebas"
+}
+
+// Playlists
+{
+    "_id" : NumberLong(2),
+    "name" : "playlist 2",
+    "owner" : NumberLong(1),
+    "tracks" : [
+        NumberLong(1),
+        NumberLong(3)
+    ]
+},
+{
+    "_id" : NumberLong(4),
+    "name" : "playlist 4",
+    "owner" : NumberLong(1),
+    "tracks" : []
+}
+
+// Tracks
+{
+    "_id" : NumberLong(1),
+    "performer" : "In Flames",
+    "title" : "Alias",
+    "url" : "https://www.youtube.com/watch?v=fV6q5BrS0Bw",
+    "album" : null,
+    "publicationDate" : null,
+    "description" : null,
+    "length" : 294,
+    "trackType" : "VIDEO",
+    "availableOffline" : false,
+    "playlists" : [
+        NumberLong(2)
+    ]
+},
+{
+    "_id" : NumberLong(2),
+    "performer" : "Metallica",
+    "title" : "Blackened",
+    "url" : null,
+    "album" : "...And Justice for All",
+    "publicationDate" : null,
+    "description" : null,
+    "length" : 300,
+    "trackType" : "SONG",
+    "availableOffline" : false,
+    "playlists" : []
+},
+{
+    "_id" : NumberLong(3),
+    "performer" : "TOOL",
+    "title" : "Vicarious",
+    "url" : null,
+    "album" : "10.000 days",
+    "publicationDate" : null,
+    "description" : null,
+    "length" : 431,
+    "trackType" : "SONG",
+    "availableOffline" : false,
+    "playlists" : [
+        NumberLong(2)
+    ]
+}
